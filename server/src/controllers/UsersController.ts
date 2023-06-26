@@ -79,7 +79,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
             return res.json({ message: "validation.incorrect", status: false })
 
         if (jsonSecretKey == "")
-            throw new Error("couldn't generate access token")
+            return res.status(500).send("couldn't generate access token")
 
         const accessToken = sign({
             id: user.id,
